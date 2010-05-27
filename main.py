@@ -1,4 +1,4 @@
-# See also: http://github.com/mitsuhiko/flask-oauth
+import conf
 
 # ----------------------------------------
 
@@ -6,11 +6,10 @@ from flask import Flask, redirect, url_for, session, request, render_template, a
 app = Flask(__name__)
 #app.debug = True
 # set the secret key.  keep this really secret:
-app.secret_key = 'xxxxxxxxx'
+app.secret_key = conf.secret_key
 
 # ----------------------------------------
 from flaskext.oauth import OAuth
-import conf
 
 oauth = OAuth()
 # Use Twitter as example remote application
