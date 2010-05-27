@@ -1,6 +1,10 @@
+from time import time
+import datetime
+from hashlib import sha1
+
 import conf
 
-# ----------------------------------------
+# ---------------------------------------- app setup
 
 from flask import Flask, redirect, url_for, session, request, render_template, abort, flash, get_flashed_messages, g
 app = Flask(__name__)
@@ -8,7 +12,40 @@ app = Flask(__name__)
 # set the secret key.  keep this really secret:
 app.secret_key = conf.secret_key
 
-# ----------------------------------------
+token_term = 7
+
+# ---------------------------------------- db
+
+from google.appengine.ext import db
+
+class User(db.Model):
+    name = db.StringProperty()
+    twitter_id = db.IntegerProperty()
+    oauth_token = db.StringProperty()
+    oauth_secret = db.StringProperty()
+    remember_token = db.StringProperty()
+    remember_token_expires_at = db.DateTimeProperty()
+
+    def update_remember_token(self):
+        token = self.name + '-' + sha1('%s%s%s' % (self.name, conf.secret_key, time())).hexdigest()
+        self.remember_token = token
+        expires_at = datetime.datetime.now() + datetime.timedelta(days=token_term)
+        self.remember_token_expires_at = expires_at
+
+    @classmethod
+    def find_by_twitter_id(self, twitter_id):
+        query = User.all()
+        query.filter('twitter_id =', int(twitter_id))
+        return query.get()
+
+    @classmethod
+    def find_by_remember_token(self, remember_token):
+        query = User.all()
+        query.filter('remember_token =', remember_token)
+        return query.get()
+
+# ---------------------------------------- auth
+
 from flaskext.oauth import OAuth
 
 oauth = OAuth()
@@ -31,31 +68,21 @@ twitter = oauth.remote_app('twitter',
     consumer_secret=conf.consumer_secret
 )
 
-# ----------------------------------------
-
-from google.appengine.ext import db
-
-class User(db.Model):
-    name = db.StringProperty()
-    twitter_id = db.IntegerProperty()
-    oauth_token = db.StringProperty()
-    oauth_secret = db.StringProperty()
-
-    @classmethod
-    def get(self, twitter_id):
-        query = User.all()
-        query.filter('twitter_id =', int(twitter_id))
-        return query.get()
-
-# ----------------------------------------
-
 @app.before_request
 def before_request():
     g.user = None
-    if 'user_key' in session:
-        g.user = db.get(session['user_key'])
 
-# ----------------------------------------
+    if 'remember_token' in session:
+        user = User.find_by_remember_token(session['remember_token'])
+        if user is not None:
+            if user.remember_token_expires_at and user.remember_token_expires_at > datetime.datetime.now():
+                g.user = user
+
+                if user.remember_token_expires_at < datetime.datetime.now() + datetime.timedelta(days=1):
+                    # update remember_token
+                    user.update_remember_token()
+                    session['remember_token'] = user.remember_token
+                    db.put(user)
 
 @twitter.tokengetter
 def get_twitter_token():
@@ -71,19 +98,6 @@ def get_twitter_token():
         return user.oauth_token, user.oauth_secret
     return None
 
-@app.route('/')
-def index():
-    tweets = None
-    if g.user is not None:
-        resp = twitter.get('statuses/home_timeline.json')
-        if resp.status == 200:
-            tweets = resp.data
-        else:
-            flash('Unable to load tweets from Twitter. Maybe out of '
-                  'API calls or Twitter is overloaded.')
-    return render_template('index.html', tweets=tweets)
-
-
 @app.route('/login')
 def login():
     return twitter.authorize(callback=url_for('oauth_authorized',
@@ -92,7 +106,7 @@ def login():
 
 @app.route('/logout')
 def logout():
-    session.pop('user_key', None)
+    session.pop('remember_token', None)
     flash('You were signed out')
     return redirect(request.referrer or url_for('index'))
 
@@ -118,7 +132,7 @@ def oauth_authorized(resp):
         flash(u'You denied the request to sign in.')
         return redirect(next_url)
 
-    user = User.get(resp['user_id'])
+    user = User.find_by_twitter_id(resp['user_id'])
 
     if user is None:
         user = User(twitter_id = int(resp['user_id']),
@@ -126,11 +140,28 @@ def oauth_authorized(resp):
                     oauth_token = resp['oauth_token'],
                     oauth_secret = resp['oauth_token_secret']
                     )
-        db.put(user)
 
-    session['user_key'] = user.key()
+    # update remember_token
+    user.update_remember_token()
+    session['remember_token'] = user.remember_token
+    db.put(user)
+
     flash('You were signed in')
     return redirect(next_url)
+
+# ---------------------------------------- main
+
+@app.route('/')
+def index():
+    tweets = None
+    if g.user is not None:
+        resp = twitter.get('statuses/home_timeline.json')
+        if resp.status == 200:
+            tweets = resp.data
+        else:
+            flash('Unable to load tweets from Twitter. Maybe out of '
+                  'API calls or Twitter is overloaded.')
+    return render_template('index.html', tweets=tweets)
 
 # ----------------------------------------
 
