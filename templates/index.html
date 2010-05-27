@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Overview</h2>
+  {% if g.user %}
+    <p>
+      Hello {{ g.user.name }}!
+    <h3>Your Friends Timeline</h3>
+    {% if tweets %}
+      {% for tweet in tweets %}
+        <li><a href="http://twitter.com/{{ tweet.user.screen_name
+          }}">{{ tweet.user.screen_name }}</a>: {{ tweet.text|urlize }}
+      {% endfor %}
+    {% endif %}
+  {% else %}
+    <p>
+      Sign in to view your public timeline and to tweet from this
+      example application.
+    <p>
+      <a href="{{ url_for('login') }}"><img src="{{
+        url_for('static', filename='sign-in.png') }}" alt="sign in"></a>
+  {% endif %}
+{% endblock %}
