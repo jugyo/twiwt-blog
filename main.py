@@ -6,7 +6,9 @@ import conf
 
 # ---------------------------------------- app setup
 
-from flask import Flask, redirect, url_for, session, request, render_template, abort, flash, get_flashed_messages, g
+from flask import Flask, redirect, url_for, session,\
+  request, render_template, abort, flash, get_flashed_messages, g
+
 app = Flask(__name__)
 #app.debug = True
 # set the secret key.  keep this really secret:
