@@ -44,6 +44,12 @@ class User(db.Model):
         query.filter(property_operator, value)
         return query.get()
 
+
+class Entry(db.Model):
+    title = db.StringProperty()
+    body  = db.StringProperty()
+    user  = db.ReferenceProperty(User)
+
 # ---------------------------------------- auth
 
 from flaskext.oauth import OAuth
@@ -145,17 +151,40 @@ def oauth_authorized(resp):
 
 # ---------------------------------------- main
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    tweets = None
-    if g.user is not None:
-        resp = twitter.get('statuses/home_timeline.json')
-        if resp.status == 200:
-            tweets = resp.data
-        else:
-            flash('Unable to load tweets from Twitter. Maybe out of '
-                  'API calls or Twitter is overloaded.')
-    return render_template('index.html', tweets=tweets)
+    if request.method == 'POST':
+        if g.user is None:
+            abort(401)
+        entry = Entry(title = request.form['title'],
+                      body = request.form['body'],
+                      user = g.user
+                      )
+        db.put(entry)
+        return redirect(url_for('user_entries', username=g.user.name))
+    else:
+        tweets = None
+        if g.user is not None:
+            resp = twitter.get('statuses/home_timeline.json')
+            if resp.status == 200:
+                tweets = resp.data
+            else:
+                flash('Unable to load tweets from Twitter. Maybe out of '
+                      'API calls or Twitter is overloaded.')
+        return render_template('index.html', tweets=tweets)
+
+
+@app.route('/new', methods=['GET'])
+def new():
+    return render_template('new.html')
+
+
+@app.route('/<username>', methods=['GET'])
+def user_entries(username):
+    user = User.find_by('name =', username)
+    if user is None:
+        abort(404)
+    return render_template('user_entries.html', user=user)
 
 # ----------------------------------------
 
