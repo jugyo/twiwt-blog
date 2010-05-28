@@ -188,11 +188,6 @@ def entry(hashcode):
     return render_template('entry.html', entry=entry)
 
 
-@app.route('/new', methods=['GET'])
-def new():
-    return render_template('new.html')
-
-
 @app.route('/<username>', methods=['GET'])
 def user_entries(username):
     user = User.find_by('name =', username)
