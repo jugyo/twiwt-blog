@@ -34,6 +34,10 @@ class User(db.Model):
         expires_at = datetime.datetime.now() + datetime.timedelta(days=token_term)
         self.remember_token_expires_at = expires_at
 
+    def delete_remember_token(self):
+        self.remember_token = None
+        self.remember_token_expires_at = None
+
     @classmethod
     def find_by_twitter_id(self, twitter_id):
         query = User.all()
@@ -73,18 +77,11 @@ twitter = oauth.remote_app('twitter',
 @app.before_request
 def before_request():
     g.user = None
-
     if 'remember_token' in session:
         user = User.find_by_remember_token(session['remember_token'])
         if user is not None:
             if user.remember_token_expires_at and user.remember_token_expires_at > datetime.datetime.now():
                 g.user = user
-
-                if user.remember_token_expires_at < datetime.datetime.now() + datetime.timedelta(days=1):
-                    # update remember_token
-                    user.update_remember_token()
-                    session['remember_token'] = user.remember_token
-                    db.put(user)
 
 @twitter.tokengetter
 def get_twitter_token():
@@ -108,7 +105,8 @@ def login():
 
 @app.route('/logout')
 def logout():
-    session.pop('remember_token', None)
+    g.user.delete_remember_token()
+    db.put(g.user)
     flash('You were signed out')
     return redirect(request.referrer or url_for('index'))
 
@@ -145,8 +143,8 @@ def oauth_authorized(resp):
 
     # update remember_token
     user.update_remember_token()
-    session['remember_token'] = user.remember_token
     db.put(user)
+    session['remember_token'] = user.remember_token
 
     flash('You were signed in')
     return redirect(next_url)
