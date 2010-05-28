@@ -1,8 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
-  <form action="{{ url_for('post') }}" method=post>
-    <p><input type=text name=title size=60></p>
-    <p><textarea name=body rows=30 cols=100></textarea></p>
-    <input type=submit value=Post>
-  </form>
+  {% if g.user %}
+    <form action="{{ url_for('post') }}" method=post>
+      <p><input type=text name=title size=60></p>
+      <p><textarea name=body rows=30 cols=100></textarea></p>
+      <input type=submit value=Post>
+    </form>
+  {% endif %}
 {% endblock %}

@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2><a href="{{ url_for('user', username=user.name) }}">@{{ user.name }}</a></h2>
+  <ul>
+    {% for e in entries %}
+      <li><a href="{{ url_for('entry', hashcode=e.hashcode) }}">{{ e.title }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

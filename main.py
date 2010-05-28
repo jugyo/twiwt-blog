@@ -49,6 +49,7 @@ class Entry(Model):
     title    = db.StringProperty()
     body     = db.StringProperty()
     user     = db.ReferenceProperty(User)
+    date     = db.DateTimeProperty()
 
 # ---------------------------------------- auth
 
@@ -163,7 +164,6 @@ def post():
 
     sha1hash = sha1(('%s%s' % (request.form['title'], request.form['body'])).encode('UTF-8')).hexdigest()
 
-    # もっとうまく書けないかなぁ
     hashcode = ''
     for s in sha1hash:
         hashcode = hashcode + s
@@ -175,7 +175,8 @@ def post():
     entry = Entry(title = request.form['title'],
               body = request.form['body'],
               user = g.user,
-              hashcode = hashcode
+              hashcode = hashcode,
+              date = datetime.datetime.now()
               )
     db.put(entry)
 
@@ -188,12 +189,14 @@ def entry(hashcode):
     return render_template('entry.html', entry=entry)
 
 
-@app.route('/<username>', methods=['GET'])
-def user_entries(username):
+@app.route('/u/<username>', methods=['GET'])
+def user(username):
     user = User.find_by('name =', username)
     if user is None:
         abort(404)
-    return render_template('user_entries.html', user=user)
+    entries = Entry.all().filter('user =', user).order('-date').fetch(200)
+    app.logger.info(entries)
+    return render_template('user.html', user=user, entries=entries)
 
 # ----------------------------------------
 

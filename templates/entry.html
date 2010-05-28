@@ -1,5 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
-  <h2><a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.title }}</a></h2>
-  <p>{{ entry.body }}</p>
+  <div id=entry>
+    <h2><a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.title }}</a></h2>
+    <div class=info>
+      by <a href="{{ url_for('user', username=entry.user.name) }}">@{{ entry.user.name }}</a>
+    </div>
+    <p>{{ entry.body }}</p>
+  </div>
 {% endblock %}

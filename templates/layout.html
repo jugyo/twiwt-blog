@@ -8,17 +8,19 @@
 
 <div id=wrap>
 
-<div id=navigation>
-  <a href="{{ url_for('index') }}">Home</a>
-  |
-  {% if g.user %}
-  <a href="{{ url_for('logout') }}">Sign out</a>
-  {% else %}
-  <a href="{{ url_for('login') }}">Sign in</a>
-  {% endif %}
-</div>
+<div id=header>
+  <div id=navigation>
+    {% if g.user %}
+    <a href="{{ url_for('user', username=g.user.name) }}">@{{ g.user.name }}</a>
+    |
+    <a href="{{ url_for('logout') }}">Sign out</a>
+    {% else %}
+    <a href="{{ url_for('login') }}">Sign in</a>
+    {% endif %}
+  </div>
 
-<h1><a href="{{ url_for('index') }}">Twiwt</a></h1>
+  <h1><a href="{{ url_for('index') }}">Twiwt</a></h1>
+</div>
 
 {% for message in get_flashed_messages() %}
   <p class=message>{{ message }}
