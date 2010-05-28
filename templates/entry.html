@@ -1,0 +1,5 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2><a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.title }}</a></h2>
+  <p>{{ entry.body }}</p>
+{% endblock %}

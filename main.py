@@ -20,8 +20,12 @@ token_term = 7
 
 from google.appengine.ext import db
 
+class Model(db.Model):
+    @classmethod
+    def find_by(self, property_operator, value):
+        return self.all().filter(property_operator, value).get()
 
-class User(db.Model):
+class User(Model):
     name                      = db.StringProperty()
     twitter_id                = db.IntegerProperty()
     oauth_token               = db.StringProperty()
@@ -39,15 +43,12 @@ class User(db.Model):
         self.remember_token = None
         self.remember_token_expires_at = None
 
-    @classmethod
-    def find_by(self, property_operator, value):
-        return User.all().filter(property_operator, value).get()
 
-
-class Entry(db.Model):
-    title = db.StringProperty()
-    body  = db.StringProperty()
-    user  = db.ReferenceProperty(User)
+class Entry(Model):
+    hashcode = db.StringProperty()
+    title    = db.StringProperty()
+    body     = db.StringProperty()
+    user     = db.ReferenceProperty(User)
 
 # ---------------------------------------- auth
 
@@ -152,25 +153,39 @@ def oauth_authorized(resp):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-        if g.user is None:
-            abort(401)
-        entry = Entry(title = request.form['title'],
-                      body = request.form['body'],
-                      user = g.user
-                      )
-        db.put(entry)
-        return redirect(url_for('user_entries', username=g.user.name))
-    else:
-        tweets = None
-        if g.user is not None:
-            resp = twitter.get('statuses/home_timeline.json')
-            if resp.status == 200:
-                tweets = resp.data
-            else:
-                flash('Unable to load tweets from Twitter. Maybe out of '
-                      'API calls or Twitter is overloaded.')
-        return render_template('index.html', tweets=tweets)
+    return render_template('index.html')
+
+
+@app.route('/e', methods=['POST'])
+def post():
+    if g.user is None:
+        abort(401)
+
+    sha1hash = sha1(('%s%s' % (request.form['title'], request.form['body'])).encode('UTF-8')).hexdigest()
+
+    # もっとうまく書けないかなぁ
+    hashcode = ''
+    for s in sha1hash:
+        hashcode = hashcode + s
+        if len(hashcode) < 6:
+            continue
+        if Entry.find_by('hashcode =', hashcode) is None:
+            break
+
+    entry = Entry(title = request.form['title'],
+              body = request.form['body'],
+              user = g.user,
+              hashcode = hashcode
+              )
+    db.put(entry)
+
+    return redirect(url_for('entry', hashcode=entry.hashcode))
+
+
+@app.route('/e/<hashcode>', methods=['GET'])
+def entry(hashcode):
+    entry = Entry.find_by('hashcode =', hashcode)
+    return render_template('entry.html', entry=entry)
 
 
 @app.route('/new', methods=['GET'])
