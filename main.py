@@ -39,15 +39,9 @@ class User(db.Model):
         self.remember_token_expires_at = None
 
     @classmethod
-    def find_by_twitter_id(self, twitter_id):
+    def find_by(self, property_operator, value):
         query = User.all()
-        query.filter('twitter_id =', int(twitter_id))
-        return query.get()
-
-    @classmethod
-    def find_by_remember_token(self, remember_token):
-        query = User.all()
-        query.filter('remember_token =', remember_token)
+        query.filter(property_operator, value)
         return query.get()
 
 # ---------------------------------------- auth
@@ -78,7 +72,7 @@ twitter = oauth.remote_app('twitter',
 def before_request():
     g.user = None
     if 'remember_token' in session:
-        user = User.find_by_remember_token(session['remember_token'])
+        user = User.find_by('remember_token =', session['remember_token'])
         if user is not None:
             if user.remember_token_expires_at and user.remember_token_expires_at > datetime.datetime.now():
                 g.user = user
@@ -132,7 +126,7 @@ def oauth_authorized(resp):
         flash(u'You denied the request to sign in.')
         return redirect(next_url)
 
-    user = User.find_by_twitter_id(resp['user_id'])
+    user = User.find_by('twitter_id =', resp['user_id'])
 
     if user is None:
         user = User(twitter_id = int(resp['user_id']),
