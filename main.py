@@ -20,12 +20,13 @@ token_term = 7
 
 from google.appengine.ext import db
 
+
 class User(db.Model):
-    name = db.StringProperty()
-    twitter_id = db.IntegerProperty()
-    oauth_token = db.StringProperty()
-    oauth_secret = db.StringProperty()
-    remember_token = db.StringProperty()
+    name                      = db.StringProperty()
+    twitter_id                = db.IntegerProperty()
+    oauth_token               = db.StringProperty()
+    oauth_secret              = db.StringProperty()
+    remember_token            = db.StringProperty()
     remember_token_expires_at = db.DateTimeProperty()
 
     def update_remember_token(self):
@@ -40,9 +41,7 @@ class User(db.Model):
 
     @classmethod
     def find_by(self, property_operator, value):
-        query = User.all()
-        query.filter(property_operator, value)
-        return query.get()
+        return User.all().filter(property_operator, value).get()
 
 
 class Entry(db.Model):
