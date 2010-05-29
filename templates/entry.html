@@ -6,5 +6,7 @@
       by <a href="{{ url_for('user', username=entry.user.name) }}">@{{ entry.user.name }}</a>
     </div>
     <p>{{ entry.body }}</p>
+    <p><a href="http://twitter.com/home/?status={{
+        '"%s" %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}" target="_blank">Post to Twitter</a></p>
   </div>
 {% endblock %}
