@@ -189,7 +189,7 @@ def entry(hashcode):
     return render_template('entry.html', entry=entry)
 
 
-@app.route('/u/<username>', methods=['GET'])
+@app.route('/<username>', methods=['GET'])
 def user(username):
     user = User.find_by('name =', username)
     if user is None:
