@@ -83,6 +83,14 @@ def before_request():
         if user is not None:
             if user.remember_token_expires_at and user.remember_token_expires_at > datetime.datetime.now():
                 g.user = user
+                if user.remember_token_expires_at < datetime.datetime.now() + datetime.timedelta(days=1):
+                    # update remember_token
+                    user.update_remember_token()
+                    session['remember_token'] = user.remember_token
+                    db.put(user)
+            else:
+                user.delete_remember_token()
+                db.put(user)
 
 @twitter.tokengetter
 def get_twitter_token():
@@ -106,9 +114,10 @@ def login():
 
 @app.route('/logout')
 def logout():
-    g.user.delete_remember_token()
-    db.put(g.user)
-    flash('You were signed out')
+    if g.user is not None:
+        g.user.delete_remember_token()
+        db.put(g.user)
+        flash('You were signed out')
     return redirect(request.referrer or url_for('index'))
 
 
@@ -141,10 +150,13 @@ def oauth_authorized(resp):
                     oauth_token = resp['oauth_token'],
                     oauth_secret = resp['oauth_token_secret']
                     )
+        user.update_remember_token()
+        db.put(user)
 
-    # update remember_token
-    user.update_remember_token()
-    db.put(user)
+    if user.remember_token is None:
+        user.update_remember_token()
+        db.put(user)
+
     session['remember_token'] = user.remember_token
 
     flash('You were signed in')
