@@ -117,7 +117,7 @@ def logout():
     if g.user is not None:
         g.user.delete_remember_token()
         db.put(g.user)
-        flash('You were signed out')
+        # flash('You were signed out')
     return redirect(request.referrer or url_for('index'))
 
 
@@ -139,7 +139,7 @@ def oauth_authorized(resp):
     """
     next_url = request.args.get('next') or url_for('index')
     if resp is None:
-        flash(u'You denied the request to sign in.')
+        # flash(u'You denied the request to sign in.')
         return redirect(next_url)
 
     user = User.find_by('twitter_id =', int(resp['user_id']))
@@ -159,14 +159,19 @@ def oauth_authorized(resp):
 
     session['remember_token'] = user.remember_token
 
-    flash('You were signed in')
+    # flash('You were signed in')
     return redirect(next_url)
 
 # ---------------------------------------- main
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    tweets = []
+    if g.user is not None:
+        resp = twitter.get('statuses/home_timeline.json')
+        if resp.status == 200:
+            tweets = resp.data
+    return render_template('index.html', tweets=tweets)
 
 
 @app.route('/e', methods=['POST'])

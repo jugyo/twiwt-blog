@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>Twiwt</title>
+  <title>Twiwt:Blog</title>
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -19,7 +19,7 @@
     {% endif %}
   </div>
 
-  <h1><a href="{{ url_for('index') }}">Twiwt</a></h1>
+  <h1><a href="{{ url_for('index') }}">Twiwt:Blog</a></h1>
 </div>
 
 {% for message in get_flashed_messages() %}

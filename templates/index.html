@@ -1,10 +1,32 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if g.user %}
-    <form action="{{ url_for('post') }}" method=post>
-      <p><input type=text name=title size=60></p>
-      <p><textarea name=body rows=30 cols=100></textarea></p>
-      <input type=submit value=Post>
-    </form>
+    <div id=content>
+      <h2>What’s happening?</h2>
+      <div id="entry-form">
+        <form action="{{ url_for('post') }}" method=post>
+          <p><input type=text name=title size=60></p>
+          <p><textarea name=body rows=30 cols=100></textarea></p>
+          <div class="submit-button"><input type=submit value=Post></div>
+        </form>
+      </div>
+      <h2>Home</h2>
+      <ul id="tweets">
+        {% for tweet in tweets %}
+          <li>
+            <a class="profile-link-icon" href="http://twitter.com/{{ tweet.user.screen_name
+            }}">
+              <img src="http://img.tweetimag.es/i/{{ tweet.user.screen_name }}_n" alt="{{ tweet.user.screen_name }}" />
+            </a>
+            <p>
+              <a href="http://twitter.com/{{ tweet.user.screen_name }}">{{ tweet.user.screen_name }}</a>
+              {{ tweet.text|urlize }}
+            </p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% else %}
+    <img src="{{ url_for('static', filename='usage.png') }}" style="margin-top: -30px"/>
   {% endif %}
 {% endblock %}

@@ -13,6 +13,12 @@ a {
     color: #335E79;
 }
 
+p {
+    margin: 0;
+    padding: 0;
+    text-shadow: 1px 1px 0px white;
+}
+
 p.message {
     color: #335E79;
     padding: 10px;
@@ -25,49 +31,138 @@ p.error {
     background: #EBCACA;
 }
 
-input {
-    font-family: 'Georgia', serif;
-    font-size: 16px;
-    border: 1px solid black;
-    color: #335E79;
+input[type="text"], textarea {
+    margin: 4px 0;
+    border: 1px solid #999;
     padding: 2px;
+    font-size: 100%;
+}
+
+input[type="text"] {
+    font-size: 110%;
 }
 
 input[type="submit"] {
-    background: #CADEEB;
-    color: #335E79;
-    border-color: #335E79;
+    margin: 0;
+    font-size: 110%;
+    background: #DDD;
+    border: solid 1px #DDD;
+    border-bottom: solid 1px #CCC;
+    color: #666;
+    padding: 6px 18px;
+    text-shadow: 1px 1px 0px white;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+}
+
+input[type="submit"]:hover {
+    border: solid 1px #AAA;
 }
 
 h1 {
     margin: 4px 0;
+    padding: 12px;
+    display: inline-block;
+    background-color: #129E00;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+}
+
+h1 a {
+    color: white;
+    text-decoration: none;
+}
+
+h2 {
+    margin: 4px 0;
     padding: 0;
+    color: #888;
 }
 
 #wrap {
     width: 800px;
-    padding: 4px 0;
+    padding: 0;
     margin: 0 auto;
 }
 
+#content {
+    margin: 10px 0;
+    padding: 16px;
+    border: solid 1px #CCC;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+}
+
 #header {
-    border-bottom: solid 3px gray;
 }
 
 #header #navigation {
     float: right;
     font-size: 90%;
+    margin-top: -8px;
+    color: #CCC;
+    padding: 12px 16px 8px 16px;
+    background-color: #999;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+}
+
+#header #navigation a {
+    color: white;
 }
 
 #entry {
     margin: 10px 0;
 }
 
-#entry h2 {
-    margin: 4px 0;
+#entry .info {
+    text-align: right;
+}
+
+/* ---- #entry-form ----*/
+
+#entry-form {
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+#entry-form textarea {
+    width: 760px;
+    height: 400px;
+}
+
+.submit-button {
+    text-align: right;
+}
+
+/* ---- ul#tweets ----*/
+
+ul#tweets {
+    margin: 8px 0 0 0;
+    padding: 10px;
+    background-color: white;
+}
+
+ul#tweets li {
+    list-style: none;
+    min-height: 56px;
+    margin: 8px 0;
+    border-bottom: solid 1px #CCC;
+    padding: 8px;
+}
+
+ul#tweets li p {
+    margin: 0;
     padding: 0;
 }
 
-#entry .info {
-    text-align: right;
+ul#tweets li a.profile-link-icon {
+    margin-right: 8px;
+    float: left;
+}
+
+ul#tweets li img {
+    padding: 0;
+    -webkit-box-shadow: 1px 1px 3px gray;
+    -moz-box-shadow: 1px 1px 3px gray;
 }
