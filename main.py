@@ -47,7 +47,7 @@ class User(Model):
 class Entry(Model):
     hashcode = db.StringProperty()
     title    = db.StringProperty()
-    body     = db.StringProperty()
+    body     = db.TextProperty()
     user     = db.ReferenceProperty(User)
     date     = db.DateTimeProperty()
 
