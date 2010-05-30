@@ -111,6 +111,16 @@ h2 {
     color: white;
 }
 
+#footer {
+    margin: 10px 0;
+}
+
+#footer #navigation {
+    font-size: 90%;
+    text-align: center;
+    color: #666;
+}
+
 #entry {
     margin: 10px 0;
 }

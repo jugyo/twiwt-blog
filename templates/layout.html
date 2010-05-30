@@ -8,25 +8,36 @@
 
 <div id=wrap>
 
-<div id=header>
-  <div id=navigation>
-    {% if g.user %}
-    <a href="{{ url_for('user', username=g.user.name) }}">@{{ g.user.name }}</a>
-    |
-    <a href="{{ url_for('logout') }}">Sign out</a>
-    {% else %}
-    <a href="{{ url_for('login') }}">Sign in</a>
-    {% endif %}
+  <div id=header>
+    <div id=navigation>
+      {% if g.user %}
+      <a href="{{ url_for('user', username=g.user.name) }}">@{{ g.user.name }}</a>
+      |
+      <a href="{{ url_for('logout') }}">Sign out</a>
+      {% else %}
+      <a href="{{ url_for('login') }}">Sign in</a>
+      {% endif %}
+    </div>
+
+    <h1><a href="{{ url_for('index') }}">Twiwt:Blog</a></h1>
   </div>
 
-  <h1><a href="{{ url_for('index') }}">Twiwt:Blog</a></h1>
-</div>
+  {% for message in get_flashed_messages() %}
+    <p class=message>{{ message }}
+  {% endfor %}
 
-{% for message in get_flashed_messages() %}
-  <p class=message>{{ message }}
-{% endfor %}
+  {% block body %}{% endblock %}
 
-{% block body %}{% endblock %}
+  <div id=footer>
+    <div id=navigation>
+      <p>
+        <a href="">@jugyo</a> が開発しています
+      </p>
+      <p>
+        <a href="http://twitter.com/home/?status=@jugyo%20Twiwt:Blog%20がバグってる！詳細:%20" target="_blank">バグ報告</a>
+      </p>
+    </div>
+  </div>
 
 </div>
 
