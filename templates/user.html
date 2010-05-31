@@ -1,9 +1,21 @@
 {% extends "layout.html" %}
 {% block body %}
-  <h2><a href="{{ url_for('user', username=user.name) }}">@{{ user.name }}</a></h2>
-  <ul>
-    {% for e in entries %}
-      <li><a href="{{ url_for('entry', hashcode=e.hashcode) }}">{{ e.title }}</a></li>
-    {% endfor %}
-  </ul>
+  <div id=content>
+    <h2>
+      <a href="{{ url_for('user', username=user.name) }}">
+        <img src="http://img.tweetimag.es/i/{{ user.name }}_n" alt="{{ user.screen_name }}" />
+      </a>
+      <a href="{{ url_for('user', username=user.name) }}">{{ user.name }}</a>
+    </h2>
+    <ul id="entries">
+      {% for e in entries %}
+        <li>
+          <h3><a href="{{ url_for('entry', hashcode=e.hashcode) }}">{{ e.title | d(e.hashcode, e.title == '') }}</a></h3>
+          <p>
+            {{ e.formated_body()[:160] | striptags}}
+          </p>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}

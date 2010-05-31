@@ -1,20 +1,22 @@
 {% extends "layout.html" %}
 {% block body %}
-  <div id=entry>
-    <h2><a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.title }}</a></h2>
-    <div class=info>
-      by <a href="{{ url_for('user', username=entry.user.name) }}">@{{ entry.user.name }}</a>
-      {% if g.user.key() == entry.user.key() %}
-      |
-      <a href="{{ url_for('edit', hashcode=entry.hashcode) }}">Edit</a>
-      {% endif %}
+  <div id=content>
+    <div id=entry>
+      <h2><a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.title }}</a></h2>
+      <div class=info>
+        by <a href="{{ url_for('user', username=entry.user.name) }}">@{{ entry.user.name }}</a>
+        {% if g.user.key() == entry.user.key() %}
+        |
+        <a href="{{ url_for('edit', hashcode=entry.hashcode) }}">Edit</a>
+        {% endif %}
+      </div>
+      <p>
+        {% autoescape false %}
+          {{ entry.formated_body() }}
+        {% endautoescape %}
+      </p>
+      <p><a href="http://twitter.com/home/?status={{
+          '"%s" %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}" target="_blank">Post to Twitter</a></p>
     </div>
-    <p>
-      {% autoescape false %}
-        {{ entry.formated_body() }}
-      {% endautoescape %}
-    </p>
-    <p><a href="http://twitter.com/home/?status={{
-        '"%s" %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}" target="_blank">Post to Twitter</a></p>
   </div>
 {% endblock %}
