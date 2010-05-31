@@ -1,6 +1,7 @@
 from time import time
 import datetime
 from hashlib import sha1
+from markdown2 import markdown
 
 import conf
 
@@ -216,7 +217,9 @@ def entry(hashcode):
         db.put(entry)
         return redirect(url_for('entry', hashcode=entry.hashcode))
     else:
-        return render_template('entry.html', entry=entry)
+        return render_template('entry.html',
+                                entry=entry,
+                                body=markdown(entry.body))
 
 
 @app.route('/e/<hashcode>/edit')

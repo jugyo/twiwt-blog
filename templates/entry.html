@@ -7,7 +7,11 @@
       |
       <a href="{{ url_for('edit', hashcode=entry.hashcode) }}">Edit</a>
     </div>
-    <p>{{ entry.body | urlize }}</p>
+    <p>
+      {% autoescape false %}
+        {{ body }}
+      {% endautoescape %}
+    </p>
     <p><a href="http://twitter.com/home/?status={{
         '"%s" %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}" target="_blank">Post to Twitter</a></p>
   </div>
