@@ -93,6 +93,8 @@ def before_request():
                 user.delete_remember_token()
                 db.put(user)
 
+    g.twitter_api_key = conf.consumer_key
+
 @twitter.tokengetter
 def get_twitter_token():
     """This is used by the API to look for the auth token and secret

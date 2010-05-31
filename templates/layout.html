@@ -3,6 +3,7 @@
 <head>
   <title>Twiwt:Blog</title>
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  <script src="http://platform.twitter.com/anywhere.js?id={{ g.twitter_api_key }}&v=1" type="text/javascript"></script>
 </head>
 <body>
 
@@ -42,6 +43,18 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+
+  twttr.anywhere(function (T) {
+    T.linkifyUsers();
+  });
+
+  twttr.anywhere(function (T) {
+    T.hovercards();
+  });
+
+</script>
 
 </body>
 </html>
