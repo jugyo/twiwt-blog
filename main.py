@@ -214,14 +214,17 @@ def post():
 def entry(hashcode):
     entry = Entry.find_by('hashcode =', hashcode)
     if request.method == 'POST':
-        if '_delete' in request.form:
-            entry.delete()
-            return redirect(url_for('index'))
+        if g.user is None or entry.user.key() != g.user.key():
+            abort(401)
         else:
-            entry.title = request.form['title']
-            entry.body = request.form['body']
-            db.put(entry)
-            return redirect(url_for('entry', hashcode=entry.hashcode))
+            if '_delete' in request.form:
+                entry.delete()
+                return redirect(url_for('index'))
+            else:
+                entry.title = request.form['title']
+                entry.body = request.form['body']
+                db.put(entry)
+                return redirect(url_for('entry', hashcode=entry.hashcode))
     else:
         return render_template('entry.html',
                                 entry=entry)
