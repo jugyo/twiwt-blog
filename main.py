@@ -53,6 +53,9 @@ class Entry(Model):
     user     = db.ReferenceProperty(User)
     date     = db.DateTimeProperty()
 
+    def formated_body(self):
+        return markdown(self.body)
+
 # ---------------------------------------- auth
 
 from flaskext.oauth import OAuth
@@ -170,12 +173,10 @@ def oauth_authorized(resp):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    tweets = []
+    entries = None
     if g.user is not None:
-        resp = twitter.get('statuses/home_timeline.json')
-        if resp.status == 200:
-            tweets = resp.data
-    return render_template('index.html', tweets=tweets)
+        entries = Entry.all().filter('user =', g.user).order('-date').fetch(20)
+    return render_template('index.html', entries=entries)
 
 
 # --------- entry
@@ -218,8 +219,7 @@ def entry(hashcode):
         return redirect(url_for('entry', hashcode=entry.hashcode))
     else:
         return render_template('entry.html',
-                                entry=entry,
-                                body=markdown(entry.body))
+                                entry=entry)
 
 
 @app.route('/e/<hashcode>/edit')
@@ -236,8 +236,7 @@ def user(username):
     user = User.find_by('name =', username)
     if user is None:
         abort(404)
-    entries = Entry.all().filter('user =', user).order('-date').fetch(200)
-    app.logger.info(entries)
+    entries = Entry.all().filter('user =', user).order('-date').fetch(20)
     return render_template('user.html', user=user, entries=entries)
 
 # ----------------------------------------

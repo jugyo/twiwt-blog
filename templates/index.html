@@ -10,17 +10,12 @@
           <div class="submit-button"><input type=submit value=Post></div>
         </form>
       </div>
-      <h2>Home</h2>
-      <ul id="tweets">
-        {% for tweet in tweets %}
+      <ul id="entries">
+        {% for e in entries %}
           <li>
-            <a class="profile-link-icon" href="http://twitter.com/{{ tweet.user.screen_name
-            }}">
-              <img src="http://img.tweetimag.es/i/{{ tweet.user.screen_name }}_n" alt="{{ tweet.user.screen_name }}" />
-            </a>
+            <h3><a href="{{ url_for('entry', hashcode=e.hashcode) }}">{{ e.title | d(e.hashcode, e.title == '') }}</a></h3>
             <p>
-              <a href="http://twitter.com/{{ tweet.user.screen_name }}">{{ tweet.user.screen_name }}</a>
-              {{ tweet.text|urlize }}
+              {{ e.formated_body()[:160] | striptags}}
             </p>
           </li>
         {% endfor %}

@@ -13,6 +13,8 @@
       {% if g.user %}
       <a href="{{ url_for('user', username=g.user.name) }}">@{{ g.user.name }}</a>
       |
+      <a href="{{ url_for('index') }}">New Post</a>
+      |
       <a href="{{ url_for('logout') }}">Sign out</a>
       {% else %}
       <a href="{{ url_for('login') }}">Sign in</a>
