@@ -59,20 +59,6 @@ input[type="submit"]:hover {
     border: solid 1px #AAA;
 }
 
-h1 {
-    margin: 4px 0;
-    padding: 12px;
-    display: inline-block;
-    background-color: #129E00;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-}
-
-h1 a {
-    color: white;
-    text-decoration: none;
-}
-
 h2 {
     margin: 4px 0;
     padding: 0;
@@ -93,7 +79,22 @@ h2 {
     -moz-border-radius: 12px;
 }
 
-#header {
+/* ---- #header ----*/
+
+#header h1 {
+    position: relative;
+    z-index: 1;
+    margin: 4px 0;
+    padding: 12px;
+    display: inline-block;
+    background-color: #129E00;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+}
+
+#header h1 a {
+    color: white;
+    text-decoration: none;
 }
 
 #header #navigation {
@@ -111,6 +112,8 @@ h2 {
     color: white;
 }
 
+/* ---- #footer ----*/
+
 #footer {
     margin: 10px 0;
 }
@@ -120,6 +123,8 @@ h2 {
     text-align: center;
     color: #666;
 }
+
+/* ---- #entry ----*/
 
 #entry {
     margin: 10px 0;
