@@ -13,6 +13,7 @@ app = Flask(__name__)
 #app.debug = True
 # set the secret key.  keep this really secret:
 app.secret_key = conf.secret_key
+app.debug = conf.debug
 
 token_term = 7
 

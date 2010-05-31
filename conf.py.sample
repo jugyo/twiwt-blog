@@ -1,3 +1,4 @@
 consumer_key = 'YOUR CONSUMER KEY'
 consumer_secret = 'YOUR CONSUMER SECRET'
 secret_key = 'APP SECRET KEY'
+debug = False
