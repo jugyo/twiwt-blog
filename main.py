@@ -203,13 +203,13 @@ def post():
     return redirect(url_for('entry', hashcode=entry.hashcode))
 
 
-@app.route('/e/<hashcode>', methods=['GET'])
+@app.route('/e/<hashcode>')
 def entry(hashcode):
     entry = Entry.find_by('hashcode =', hashcode)
     return render_template('entry.html', entry=entry)
 
 
-@app.route('/<username>', methods=['GET'])
+@app.route('/<username>')
 def user(username):
     user = User.find_by('name =', username)
     if user is None:
