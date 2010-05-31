@@ -142,11 +142,16 @@ h2 {
 /* ---- #entry ----*/
 
 #entry {
-    margin: 10px 0;
+    margin: 0;
 }
 
 #entry .info {
     text-align: right;
+}
+
+#entry h2 img {
+    vertical-align: middle;
+    margin: 0 2px;
 }
 
 /* ---- #entry-form ----*/

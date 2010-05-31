@@ -2,7 +2,17 @@
 {% block body %}
   <div id=content>
     <div id=entry>
-      <h2><a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.title }}</a></h2>
+      <h2>
+        <a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.title }}</a>
+        {% if g.user.key() == entry.user.key() %}
+          <a href="http://twitter.com/home/?status={{
+              '"%s" %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}"
+            title="Tweet this post"
+            target="_blank">
+            <img src="{{ url_for('static', filename='t_small-b.png') }}" />
+          </a>
+        {% endif %}
+      </h2>
       <div class=info>
         by <a href="{{ url_for('user', username=entry.user.name) }}">@{{ entry.user.name }}</a>
         {% if g.user.key() == entry.user.key() %}
@@ -15,8 +25,6 @@
           {{ entry.formated_body() }}
         {% endautoescape %}
       </p>
-      <p><a href="http://twitter.com/home/?status={{
-          '"%s" %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}" target="_blank">Post to Twitter</a></p>
     </div>
     <form action="{{ url_for('entry', hashcode=entry.hashcode) }}" method="post">
       <input type="hidden" name="_delete" value="true">
