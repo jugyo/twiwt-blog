@@ -18,5 +18,11 @@
       <p><a href="http://twitter.com/home/?status={{
           '"%s" %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}" target="_blank">Post to Twitter</a></p>
     </div>
+    <form action="{{ url_for('entry', hashcode=entry.hashcode) }}" method="post">
+      <input type="hidden" name="_delete" value="true">
+      <div class="delete-button">
+        <input type="submit" value="Delete" onclick="return confirm('Are you sure?');" />
+      </div>
+    </form>
   </div>
 {% endblock %}

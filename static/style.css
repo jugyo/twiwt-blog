@@ -154,6 +154,14 @@ h2 {
     text-align: right;
 }
 
+.delete-button {
+    margin-top: 40px;
+}
+
+.delete-button input[type=submit] {
+    color: red;
+}
+
 /* ---- ul#tweets ----*/
 
 ul#entries {

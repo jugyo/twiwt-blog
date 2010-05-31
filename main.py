@@ -212,11 +212,15 @@ def post():
 def entry(hashcode):
     entry = Entry.find_by('hashcode =', hashcode)
     if request.method == 'POST':
-        entry.title = request.form['title']
-        entry.body = request.form['body']
-        entry.date = datetime.datetime.now()
-        db.put(entry)
-        return redirect(url_for('entry', hashcode=entry.hashcode))
+        if '_delete' in request.form:
+            entry.delete()
+            return redirect(url_for('index'))
+        else:
+            entry.title = request.form['title']
+            entry.body = request.form['body']
+            entry.date = datetime.datetime.now()
+            db.put(entry)
+            return redirect(url_for('entry', hashcode=entry.hashcode))
     else:
         return render_template('entry.html',
                                 entry=entry)
@@ -227,6 +231,8 @@ def edit(hashcode):
     entry = Entry.find_by('hashcode =', hashcode)
     return render_template('edit.html', entry=entry)
 
+
+@app.route('/e/<hashcode>', )
 
 # --------- user
 
