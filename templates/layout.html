@@ -1,3 +1,4 @@
+{% from "macros.html" import user_link, user_image_link %}
 <!doctype html>
 <html>
 <head>
@@ -11,7 +12,8 @@
   <div id=header>
     <div id=navigation>
       {% if g.user %}
-      <a href="{{ url_for('user', username=g.user.name) }}">@{{ g.user.name }}</a>
+      {{ user_image_link(g.user, 'm') }}
+      {{ user_link(g.user) }}
       |
       <a href="{{ url_for('index') }}">New Post</a>
       |
