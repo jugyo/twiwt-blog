@@ -10,7 +10,7 @@ img {
 }
 
 a {
-    color: #335E79;
+    color: #00719E;
 }
 
 p {
@@ -83,7 +83,7 @@ h2 {
 #header h1 {
     position: relative;
     z-index: 1;
-    margin: 4px 0;
+    margin: 16px 0;
     padding: 12px;
     display: inline-block;
     background-color: #129E00;
