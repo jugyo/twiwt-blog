@@ -177,6 +177,9 @@ def index():
     return render_template('index.html', tweets=tweets)
 
 
+# --------- entry
+
+
 @app.route('/e', methods=['POST'])
 def post():
     if g.user is None:
@@ -203,10 +206,26 @@ def post():
     return redirect(url_for('entry', hashcode=entry.hashcode))
 
 
-@app.route('/e/<hashcode>')
+@app.route('/e/<hashcode>', methods=['GET', 'POST'])
 def entry(hashcode):
     entry = Entry.find_by('hashcode =', hashcode)
-    return render_template('entry.html', entry=entry)
+    if request.method == 'POST':
+        entry.title = request.form['title']
+        entry.body = request.form['body']
+        entry.date = datetime.datetime.now()
+        db.put(entry)
+        return redirect(url_for('entry', hashcode=entry.hashcode))
+    else:
+        return render_template('entry.html', entry=entry)
+
+
+@app.route('/e/<hashcode>/edit')
+def edit(hashcode):
+    entry = Entry.find_by('hashcode =', hashcode)
+    return render_template('edit.html', entry=entry)
+
+
+# --------- user
 
 
 @app.route('/<username>')
