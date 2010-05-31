@@ -34,6 +34,7 @@ class User(Model):
     oauth_secret              = db.StringProperty()
     remember_token            = db.StringProperty()
     remember_token_expires_at = db.DateTimeProperty()
+    date                      = db.DateTimeProperty()
 
     def update_remember_token(self):
         token = self.name + '-' + sha1('%s%s%s' % (self.name, conf.secret_key, time())).hexdigest()
@@ -155,7 +156,8 @@ def oauth_authorized(resp):
         user = User(twitter_id = int(resp['user_id']),
                     name = resp['screen_name'],
                     oauth_token = resp['oauth_token'],
-                    oauth_secret = resp['oauth_token_secret']
+                    oauth_secret = resp['oauth_token_secret'],
+                    date = datetime.datetime.now()
                     )
         user.update_remember_token()
         db.put(user)
