@@ -30,6 +30,13 @@ p.error {
     background: #EBCACA;
 }
 
+pre {
+    margin: 16px;
+    padding: 4px;
+    border: 1px solid #CCC;
+    background-color: #EEE;
+}
+
 input[type="text"], textarea {
     margin: 4px 0;
     border: 1px solid #999;
@@ -152,6 +159,10 @@ h2 {
 #entry h2 img {
     vertical-align: middle;
     margin: 0 2px;
+}
+
+#entry-body p {
+    margin: 10px 0;
 }
 
 /* ---- #entry-form ----*/

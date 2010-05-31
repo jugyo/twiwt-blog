@@ -20,11 +20,11 @@
         <a href="{{ url_for('edit', hashcode=entry.hashcode) }}">Edit</a>
         {% endif %}
       </div>
-      <p>
+      <div id="entry-body">
         {% autoescape false %}
           {{ entry.formated_body() }}
         {% endautoescape %}
-      </p>
+      </div>
     </div>
     <form action="{{ url_for('entry', hashcode=entry.hashcode) }}" method="post">
       <input type="hidden" name="_delete" value="true">
