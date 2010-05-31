@@ -1,25 +1,11 @@
+{% from "macros.html" import entry_list, entry_form %}
 {% extends "layout.html" %}
 {% block body %}
   {% if g.user %}
     <div id=content>
       <h2>What’s happening?</h2>
-      <div id="entry-form">
-        <form action="{{ url_for('post') }}" method=post>
-          <p><input type=text name=title size=60></p>
-          <p><textarea name=body rows=30 cols=100></textarea></p>
-          <div class="submit-button"><input type=submit value=Post></div>
-        </form>
-      </div>
-      <ul id="entries">
-        {% for e in entries %}
-          <li>
-            <h3><a href="{{ url_for('entry', hashcode=e.hashcode) }}">{{ e.title | d(e.hashcode, e.title == '') }}</a></h3>
-            <p>
-              {{ e.formated_body()[:160] | striptags}}
-            </p>
-          </li>
-        {% endfor %}
-      </ul>
+      {{ entry_form() }}
+      {{ entry_list(entries) }}
     </div>
   {% else %}
     <img src="{{ url_for('static', filename='usage.png') }}" style="margin-top: -30px"/>
