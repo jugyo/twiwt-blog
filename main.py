@@ -232,8 +232,11 @@ def entry(hashcode):
 
 @app.route('/e/<hashcode>/edit')
 def edit(hashcode):
-    entry = Entry.find_by('hashcode =', hashcode)
-    return render_template('edit.html', entry=entry)
+    if g.user is None or entry.user.key() != g.user.key():
+        abort(401)
+    else:
+        entry = Entry.find_by('hashcode =', hashcode)
+        return render_template('edit.html', entry=entry)
 
 
 @app.route('/e/<hashcode>', )
