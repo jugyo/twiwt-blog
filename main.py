@@ -220,7 +220,6 @@ def entry(hashcode):
         else:
             entry.title = request.form['title']
             entry.body = request.form['body']
-            entry.date = datetime.datetime.now()
             db.put(entry)
             return redirect(url_for('entry', hashcode=entry.hashcode))
     else:
