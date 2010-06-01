@@ -213,33 +213,37 @@ def post():
 @app.route('/e/<hashcode>', methods=['GET', 'POST'])
 def entry(hashcode):
     entry = Entry.find_by('hashcode =', hashcode)
-    if request.method == 'POST':
-        if g.user is None or entry.user.key() != g.user.key():
-            abort(401)
-        else:
-            if '_delete' in request.form:
-                entry.delete()
-                return redirect(url_for('index'))
+    if entry:
+        if request.method == 'POST':
+            if g.user is None or entry.user.key() != g.user.key():
+                abort(401)
             else:
-                entry.title = request.form['title']
-                entry.body = request.form['body']
-                db.put(entry)
-                return redirect(url_for('entry', hashcode=entry.hashcode))
+                if '_delete' in request.form:
+                    entry.delete()
+                    return redirect(url_for('index'))
+                else:
+                    entry.title = request.form['title']
+                    entry.body = request.form['body']
+                    db.put(entry)
+                    return redirect(url_for('entry', hashcode=entry.hashcode))
+        else:
+            return render_template('entry.html',
+                                    entry=entry)
     else:
-        return render_template('entry.html',
-                                entry=entry)
+        abort(404)
 
 
 @app.route('/e/<hashcode>/edit')
 def edit(hashcode):
-    if g.user is None or entry.user.key() != g.user.key():
-        abort(401)
+    entry = Entry.find_by('hashcode =', hashcode)
+    if entry:
+        if g.user is None or entry.user.key() != g.user.key():
+            abort(401)
+        else:
+            return render_template('edit.html', entry=entry)
     else:
-        entry = Entry.find_by('hashcode =', hashcode)
-        return render_template('edit.html', entry=entry)
+        abort(404)
 
-
-@app.route('/e/<hashcode>', )
 
 # --------- user
 
