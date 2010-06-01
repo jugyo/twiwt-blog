@@ -13,17 +13,20 @@
       </h2>
       <div class=info>
         by <a href="{{ url_for('user', username=entry.user.name) }}">@{{ entry.user.name }}</a>
+      </div>
+      <div id="entry-body">
+        {% autoescape false %}
+          {{ entry.formated_body() }}
+        {% endautoescape %}
+      </div>
+      <div class=info>
+        <a href="{{ url_for('text', hashcode=entry.hashcode) }}" target="_blank">Text</a>
         {% if g.user and g.user.key() == entry.user.key() %}
         |
         <a href="{{ url_for('edit', hashcode=entry.hashcode) }}">Edit</a>
         |
         <a href="#" onclick="if (confirm('Are you sure?')) { $('#delete-entry-form').submit(); }">Delete</a>
         {% endif %}
-      </div>
-      <div id="entry-body">
-        {% autoescape false %}
-          {{ entry.formated_body() }}
-        {% endautoescape %}
       </div>
     </div>
     {% if g.user and g.user.key() == entry.user.key() %}

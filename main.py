@@ -8,7 +8,8 @@ import conf
 # ---------------------------------------- app setup
 
 from flask import Flask, redirect, url_for, session,\
-  request, render_template, abort, flash, get_flashed_messages, g
+  request, render_template, abort, flash, get_flashed_messages, g,\
+  Response
 
 app = Flask(__name__)
 #app.debug = True
@@ -241,6 +242,15 @@ def edit(hashcode):
             abort(401)
         else:
             return render_template('edit.html', entry=entry)
+    else:
+        abort(404)
+
+
+@app.route('/e/<hashcode>/text')
+def text(hashcode):
+    entry = Entry.find_by('hashcode =', hashcode)
+    if entry:
+        return Response(entry.body, mimetype='text/plain')
     else:
         abort(404)
 
