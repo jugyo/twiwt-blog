@@ -4,14 +4,12 @@
     <div id=entry>
       <h2>
         <a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.title }}</a>
-        {% if g.user and g.user.key() == entry.user.key() %}
-          <a href="http://twitter.com/home/?status={{
-              '"%s" %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}"
-            title="Tweet this post"
-            target="_blank">
-            <img src="{{ url_for('static', filename='t_small-b.png') }}" />
-          </a>
-        {% endif %}
+        <a href="http://twitter.com/home/?status={{
+            '"%s" %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}"
+          title="Tweet this post"
+          target="_blank">
+          <img src="{{ url_for('static', filename='t_small-b.png') }}" />
+        </a>
       </h2>
       <div class=info>
         by <a href="{{ url_for('user', username=entry.user.name) }}">@{{ entry.user.name }}</a>
