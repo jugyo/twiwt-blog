@@ -5,14 +5,14 @@
       <h2>
         <a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.title }}</a>
         <a href="http://twitter.com/home/?status={{
-            '"%s" %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}"
+            '%s %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}"
           title="Tweet this post"
           target="_blank">
           <img src="{{ url_for('static', filename='t_small-b.png') }}" />
         </a>
       </h2>
       <div class=info>
-        by <a href="{{ url_for('user', username=entry.user.name) }}">@{{ entry.user.name }}</a>
+        {{ user_image_link(entry.user, 'm') }} {{ user_link(entry.user) }}
       </div>
       <div id="entry-body">
         {% autoescape false %}
