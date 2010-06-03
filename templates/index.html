@@ -1,10 +1,11 @@
 {% from "macros.html" import entry_list, entry_form %}
 {% extends "layout.html" %}
+
 {% block body %}
   {% if g.user %}
     <div id=content>
       <h2>What’s happening?</h2>
-      {{ entry_form() }}
+      {{ entry_form(button_label='Post') }}
       {{ entry_list(entries) }}
     </div>
   {% else %}

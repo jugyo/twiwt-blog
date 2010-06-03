@@ -1,11 +1,44 @@
-{% macro entry_form(entry=None) -%}
+{% macro entry_form(button_label, entry=None) -%}
     <div id="entry-form">
       <form action="{{ url_for('post') }}" method=post>
         <p><input type=text name=title size=60 value="{{ entry.title | d('') }}"></p>
+        <div class="help">
+          <a href="#" id="show-help" title="Help">?</a>
+        </div>
         <p><textarea name=body rows=30 cols=100>{{ entry.body | d('') }}</textarea></p>
-        <div class="submit-button"><input type=submit value=Post></div>
+        <div class="submit-button"><input type=submit value={{ button_label }}></div>
       </form>
     </div>
+
+    {% include 'form_help.html' %}
+
+    <script type="text/javascript">
+      $(function() {
+        $('#show-help').qtip({
+          content: {
+             text: $('#form-help'),
+             title: {
+                text: 'Help',
+                button: 'Close'
+             }
+          },
+          style: {
+            name: 'dark',
+            width: 400,
+            height: 640
+          },
+          position: {
+            corner: {
+              target: 'bottomLeft',
+              tooltip: 'rightTop'
+            },
+            adjust: { x: 100, y: -140 }
+          },
+          show: { when: { event: 'click' } },
+          hide: false
+        });
+      });
+    </script>
 {%- endmacro %}
 
 {% macro entry_list(entries) -%}

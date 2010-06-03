@@ -1,15 +1,7 @@
+{% from "macros.html" import entry_form %}
 {% extends "layout.html" %}
 {% block body %}
 <div id=content>
-  <div id="entry-form">
-    <form action="{{ url_for('entry', hashcode=entry.hashcode) }}" method=post>
-      <p><input type=text name=title size=60 value="{{ entry.title }}"></p>
-      <p><textarea name=body rows=30 cols=100>{{ entry.body }}</textarea></p>
-      <div class="submit-button">
-        <a href="{{ url_for('entry', hashcode=entry.hashcode) }}">Cancel</a>
-        <input type=submit value=Save>
-      </div>
-    </form>
-  </div>
+  {{ entry_form(entry=entry, button_label='Save') }}
 </div>
 {% endblock %}
