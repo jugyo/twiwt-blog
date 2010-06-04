@@ -95,7 +95,6 @@ h2 {
     position: relative;
     z-index: 1;
     margin: 16px 0;
-    padding: 12px;
     display: inline-block;
     background-color: #129E00;
     -webkit-border-radius: 12px;
@@ -103,6 +102,8 @@ h2 {
 }
 
 #header h1 a {
+    display: block;
+    padding: 12px;
     color: white;
     text-decoration: none;
 }
