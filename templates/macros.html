@@ -28,9 +28,9 @@
       {% for e in entries %}
         <li>
           <h3><a href="{{ url_for('entry', hashcode=e.hashcode) }}">{{ e.title | d(e.hashcode, e.title == '') }}</a></h3>
-          <p>
-            {{ e.formated_body() | striptags | truncate(length=128, killwords=False, end='...')}}
-          </p>
+          <div class="entry-body">
+            {{ e.formated_body() | safe}}
+          </div>
         </li>
       {% endfor %}
     </ul>
