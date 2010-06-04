@@ -5,7 +5,7 @@
   {% if g.user %}
     <div id=content>
       <h2>What’s happening?</h2>
-      {{ entry_form(button_label='Post') }}
+      {{ entry_form(url=url_for('post'), button_label='Post') }}
       {{ entry_list(entries) }}
     </div>
   {% else %}

@@ -1,6 +1,6 @@
-{% macro entry_form(button_label, entry=None) -%}
+{% macro entry_form(url, button_label, entry=None) -%}
     <div id="entry-form">
-      <form action="{{ url_for('post') }}" method=post>
+      <form action="{{ url }}" method=post>
         <p><input type=text name=title size=60 value="{{ entry.title | d('') }}"></p>
         <div class="help">
           <a href="#" id="show-help" title="Help">?</a>

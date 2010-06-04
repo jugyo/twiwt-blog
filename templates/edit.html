@@ -2,6 +2,6 @@
 {% extends "layout.html" %}
 {% block body %}
 <div id=content>
-  {{ entry_form(entry=entry, button_label='Save') }}
+  {{ entry_form(url=url_for('entry', hashcode=entry.hashcode), entry=entry, button_label='Save') }}
 </div>
 {% endblock %}
