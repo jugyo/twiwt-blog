@@ -168,6 +168,14 @@ img.user-image {
     margin: 10px 0;
 }
 
+#entry-body img {
+  display: block;
+  margin: 20px auto;
+  border: solid 1px #CCC;
+  max-width: 600px;
+  -webkit-box-shadow: 2px 2px 12px #AAA;
+}
+
 /* ---- #entry-form ----*/
 
 #entry-form {
