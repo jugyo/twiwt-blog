@@ -10,7 +10,7 @@
           <img src="{{ url_for('static', filename='t_small-b.png') }}" />
         </a>
       </h2>
-      {{ entry_list(entries) }}
+      {{ entry_list(entries, g.user) }}
     </div>
   </div>
 {% endblock %}

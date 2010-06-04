@@ -6,7 +6,7 @@
     <div id=content>
       <h2>What’s happening?</h2>
       {{ entry_form(url=url_for('post'), button_label='Post') }}
-      {{ entry_list(entries) }}
+      {{ entry_list(entries, g.user) }}
     </div>
   {% else %}
     <img src="{{ url_for('static', filename='usage.png') }}" style="margin-top: -30px"/>

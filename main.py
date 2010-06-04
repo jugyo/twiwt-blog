@@ -246,15 +246,6 @@ def edit(hashcode):
         abort(404)
 
 
-@app.route('/e/<hashcode>/text')
-def text(hashcode):
-    entry = Entry.find_by('hashcode =', hashcode)
-    if entry:
-        return Response(entry.body, mimetype='text/plain')
-    else:
-        abort(404)
-
-
 # --------- user
 
 
