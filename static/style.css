@@ -134,7 +134,7 @@ img.user-image {
 
 #header #navigation img {
   margin: 0 2px 0 0;
-  vertical-align: middle;
+  vertical-align: bottom;
 }
 
 /* ---- #footer ----*/
@@ -162,7 +162,7 @@ img.user-image {
 }
 
 .entry h2 img {
-    vertical-align: middle;
+    vertical-align: bottom;
     margin: 0 2px;
 }
 
@@ -266,4 +266,10 @@ ul#entries > li p {
     color: #666;
     margin: 0;
     padding: 0;
+}
+
+/* ---- #user-info ----*/
+
+#user-info h2 img {
+  vertical-align: bottom;
 }

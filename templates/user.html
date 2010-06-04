@@ -2,10 +2,15 @@
 {% extends "layout.html" %}
 {% block body %}
   <div id=content>
-    <h2>
-      {{ user_image_link(user) }}
-      {{ user_link(user) }}
-    </h2>
-    {{ entry_list(entries) }}
+    <div id=user-info>
+      <h2>
+        {{ user_image_link(user) }}
+        {{ user_link(user) }}
+        <a href="http://twitter.com/{{ user.name }}" target="_blank" title="View {{ user.name }} on Twitter">
+          <img src="{{ url_for('static', filename='t_small-b.png') }}" />
+        </a>
+      </h2>
+      {{ entry_list(entries) }}
+    </div>
   </div>
 {% endblock %}
