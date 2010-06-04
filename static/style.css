@@ -66,7 +66,8 @@ input[type="submit"]:hover {
 }
 
 h2 {
-    margin: 4px 0;
+    font-size: 130%;
+    margin: 8px 0;
     padding: 0;
     color: #888;
 }
@@ -258,7 +259,7 @@ ul#entries > li {
     margin: 0;
     min-height: 4em;
     border-top: solid 1px #CCC;
-    padding: 20px 0;
+    padding: 40px 0;
 }
 
 ul#entries > li p {
