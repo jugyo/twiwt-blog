@@ -13,31 +13,13 @@
     {% include 'form_help.html' %}
 
     <script type="text/javascript">
-      $(function() {
-        $('#show-help').qtip({
-          content: {
-             text: $('#form-help'),
-             title: {
-                text: 'Help',
-                button: 'Close'
-             }
-          },
-          style: {
-            name: 'dark',
-            width: 400,
-            height: 640
-          },
-          position: {
-            corner: {
-              target: 'bottomLeft',
-              tooltip: 'rightTop'
-            },
-            adjust: { x: 100, y: -140 }
-          },
-          show: { when: { event: 'click' } },
-          hide: false
-        });
+      $('#show-help').click(function () {
+        $('#form-help').show();
       });
+      $('#close-help').click(function () {
+        $('#form-help').hide();
+      });
+      $('#form-help').draggable({ cancel: 'pre' });
     </script>
 {%- endmacro %}
 
