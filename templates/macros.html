@@ -3,7 +3,7 @@
       <form action="{{ url }}" method=post>
         <p><input type=text name=title size=60 value="{{ entry.title | d('') }}" tabindex=1 /></p>
         <div class="help">
-          <a href="#" id="show-help" title="Help">?</a>
+          <a href="#" id="show-help" title="Help">Markdown Cheat Sheet</a>
         </div>
         <p><textarea name=body rows=30 cols=100 tabindex=2>{{ entry.body | d('') }}</textarea></p>
         <div class="submit-button"><input type=submit value={{ button_label }} tabindex=3></div>

@@ -193,11 +193,12 @@ img.user-image {
 }
 
 #form-help {
+  font-size: 90%;
   position: absolute;
   top: 10px;
   right: 10px;
   z-index: 100;
-  width: 480px;
+  width: 420px;
   font-size: 76%;
   color: white;
   padding: 10px;
@@ -205,6 +206,7 @@ img.user-image {
   border: none;
   background-color: black;
   cursor: move;
+  opacity: 0.8;
 }
 
 #form-help a {
@@ -212,14 +214,16 @@ img.user-image {
 }
 
 #form-help h3 {
-  margin: 6px 0;
+  color: #999;
+  font-size: 110%;
+  margin: 8px 0 4px 0;
 }
 
 #form-help pre {
   margin: 0;
   padding: 4px;
-  border: solid 1px #111;
-  background-color: #333;
+  border: none;
+  background-color: #111;
   cursor: text;
 }
 
@@ -230,8 +234,8 @@ img.user-image {
 }
 
 #entry-form .help a {
+  font-size: 76%;
   color: orange;
-  font-weight: bold;
 }
 
 /* ---- ul#entries ----*/
