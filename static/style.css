@@ -269,12 +269,6 @@ ul#entries > li {
     padding: 40px 0;
 }
 
-ul#entries > li p {
-    color: #666;
-    margin: 0;
-    padding: 0;
-}
-
 /* ---- #user-info ----*/
 
 #user-info h2 img {
