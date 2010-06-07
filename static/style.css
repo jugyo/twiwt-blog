@@ -13,6 +13,13 @@ a {
     color: #00719E;
 }
 
+blockquote {
+  color: #666;
+  margin: 20px;
+  padding: 1px 10px;
+  border-left: solid 10px #DDD;
+}
+
 p {
     margin: 0;
     padding: 0;
