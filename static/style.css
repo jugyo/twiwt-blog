@@ -42,6 +42,7 @@ pre {
     padding: 4px;
     border: 1px solid #CCC;
     background-color: #EEE;
+    overflow: auto;
 }
 
 input[type="text"], textarea {
