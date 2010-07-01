@@ -276,3 +276,15 @@ ul#entries > li {
 #user-info h2 img {
   vertical-align: bottom;
 }
+
+/* ---- #use-name ----*/
+
+h2#use-name {
+  margin: 12px;
+  font-size: 36px;
+}
+
+h2#use-name a {
+  color: #666;
+  text-decoration: none;
+}

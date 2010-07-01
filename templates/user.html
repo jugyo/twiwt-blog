@@ -3,10 +3,10 @@
 {% block body %}
   <div id=content>
     <div id=user-info>
-      <h2>
+      <h2 id=use-name>
         {{ user_image_link(user) }}
         {{ user_link(user) }}
-        <a href="http://twitter.com/{{ user.name }}" target="_blank" title="View {{ user.name }} on Twitter">
+        <a href="http://twitter.com/{{ user.name }}" target="_blank" title="View {{ user.name }} on Twitter" class="twitter-link">
           <img src="{{ url_for('static', filename='t_small-b.png') }}" />
         </a>
       </h2>

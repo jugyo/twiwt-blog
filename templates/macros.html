@@ -38,7 +38,8 @@
         <a href="http://twitter.com/home/?status={{
             '%s %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}"
           title="Tweet this post"
-          target="_blank">
+          target="_blank"
+          class="twitter-link">
           <img src="{{ url_for('static', filename='t_small-b.png') }}" />
         </a>
       </h2>
