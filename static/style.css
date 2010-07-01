@@ -38,10 +38,11 @@ p.error {
 }
 
 pre {
-    margin: 16px;
+    font-size: 90%;
+    margin: 24px 0;
     padding: 4px;
-    border: 1px solid #CCC;
-    background-color: #EEE;
+    border: 1px solid #DDD;
+    background-color: #F8F8FF;
     overflow: auto;
 }
 
