@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>Twiwt:Blog</title>
+  <title>Twiwt:Blog{% if entry is defined %} / {{ entry.user.name }} : {{ entry.title }}{% endif %}</title>
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='prettify.css') }}">
   <script type="text/javascript" src="{{ url_for('static', filename='prettify.js') }}"></script>
