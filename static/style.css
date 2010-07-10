@@ -102,7 +102,6 @@ h2 {
 /* ---- #header ----*/
 
 #header {
-    text-shadow: 0px 1px 0px #333;
 }
 
 #header h1 {
@@ -110,11 +109,10 @@ h2 {
     z-index: 1;
     margin: 16px 0;
     display: inline-block;
-    background-color: #129E00;
+    background: transparent url(header-h1.png) top left no-repeat;
+/*    background-color: #129E00;*/
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
-    opacity: 0.8;
-    -moz-opacity: 0.8;
 }
 
 #header h1 a {
@@ -130,11 +128,10 @@ h2 {
     margin-top: -8px;
     color: #CCC;
     padding: 12px 16px 8px 16px;
-    background-color: #666;
+    background-color: #888;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     opacity: 0.8;
-    -moz-opacity: 0.8;
 }
 
 #header #navigation a {
