@@ -96,6 +96,7 @@ h2 {
     -moz-border-radius: 12px;
     background-color: #FFF;
     opacity: 0.7;
+    -moz-opacity: 0.7;
 }
 
 /* ---- #header ----*/
@@ -113,6 +114,7 @@ h2 {
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
     opacity: 0.8;
+    -moz-opacity: 0.8;
 }
 
 #header h1 a {
@@ -132,6 +134,7 @@ h2 {
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     opacity: 0.8;
+    -moz-opacity: 0.8;
 }
 
 #header #navigation a {
@@ -222,6 +225,7 @@ img.user-image {
   background-color: black;
   cursor: move;
   opacity: 0.8;
+  -moz-opacity: 0.8;
 }
 
 #form-help a {
