@@ -1,3 +1,4 @@
 *.pyc
 app.yaml
 conf.py
+.DS_Store
