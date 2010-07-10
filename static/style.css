@@ -3,6 +3,7 @@ body {
     font-size: 16px;
     margin: 0;
     padding: 0;
+    background: transparent url(background.png) top right no-repeat;
 }
 
 img {
@@ -93,6 +94,8 @@ h2 {
     border: solid 1px #CCC;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
+    background-color: #FFF;
+    opacity: 0.7;
 }
 
 /* ---- #header ----*/
@@ -109,6 +112,7 @@ h2 {
     background-color: #129E00;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
+    opacity: 0.8;
 }
 
 #header h1 a {
@@ -124,9 +128,10 @@ h2 {
     margin-top: -8px;
     color: #CCC;
     padding: 12px 16px 8px 16px;
-    background-color: #888;
+    background-color: #666;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
+    opacity: 0.8;
 }
 
 #header #navigation a {
@@ -142,8 +147,7 @@ img.user-image {
 }
 
 #header #navigation img {
-  margin: 0 2px 0 0;
-  vertical-align: bottom;
+  margin-left: 4px;
 }
 
 /* ---- #footer ----*/
