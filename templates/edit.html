@@ -2,6 +2,7 @@
 {% extends "layout.html" %}
 {% block body %}
 <div id=content>
+  <h2>Edit: {{ entry.hashcode }}</h2>
   {{ entry_form(url=url_for('entry', hashcode=entry.hashcode), entry=entry, button_label='Save') }}
 </div>
 {% endblock %}

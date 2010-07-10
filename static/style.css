@@ -3,7 +3,7 @@ body {
     font-size: 16px;
     margin: 0;
     padding: 0;
-    background: transparent url(background.jpg) top right no-repeat;
+    background: transparent url(background.png) top left no-repeat;
 }
 
 img {
@@ -94,9 +94,10 @@ h2 {
     border: solid 1px #CCC;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
-    background-color: #FFF;
-    opacity: 0.7;
-    -moz-opacity: 0.7;
+    background: #FFF url(content.png) top right no-repeat;
+    -webkit-box-shadow: 0 0 8px #AAA;
+    -moz-box-shadow: 0 0 8px #AAA;
+    text-shadow: 1px 1px 0px white;
 }
 
 /* ---- #header ----*/
@@ -113,6 +114,9 @@ h2 {
 /*    background-color: #129E00;*/
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
+    -webkit-box-shadow: 0 0 8px #AAA;
+    -moz-box-shadow: 0 0 8px #AAA;
+    opacity: 0.9;
 }
 
 #header h1 a {
@@ -131,7 +135,9 @@ h2 {
     background-color: #888;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
-    opacity: 0.8;
+    -webkit-box-shadow: 0 0 8px #AAA;
+    -moz-box-shadow: 0 0 8px #AAA;
+    opacity: 0.9;
 }
 
 #header #navigation a {
@@ -153,7 +159,15 @@ img.user-image {
 /* ---- #footer ----*/
 
 #footer {
-    margin: 40px 0 10px 0;
+    width: 500px;
+    margin: 30px auto 20px auto;
+    padding: 8px 16px 8px 16px;
+    background-color: #FFF;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-box-shadow: 0 0 4px #AAA;
+    -moz-box-shadow: 0 0 4px #AAA;
+    opacity: 0.7;
 }
 
 #footer #navigation {
@@ -259,7 +273,7 @@ img.user-image {
 ul#entries {
     margin: 40px 0 0 0;
     padding: 0;
-    background-color: white;
+/*    background-color: white;*/
 }
 
 ul#entries h3 {
