@@ -99,12 +99,12 @@ h2 {
 #content {
     margin: 10px 0;
     padding: 16px;
-    border: solid 1px #CCC;
+    border: solid 4px #DDD;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
     background: #FFF url(content.png) top right no-repeat;
-    -webkit-box-shadow: 0 0 8px #AAA;
-    -moz-box-shadow: 0 0 8px #AAA;
+    -webkit-box-shadow: 0 0 16px #DDD;
+    -moz-box-shadow: 0 0 16px #DDD;
     text-shadow: 1px 1px 0px white;
 }
 
@@ -119,12 +119,9 @@ h2 {
     margin: 16px 0;
     display: inline-block;
     background: transparent url(header-h1.png) top left no-repeat;
-/*    background-color: #129E00;*/
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
-    -webkit-box-shadow: 0 0 8px #AAA;
-    -moz-box-shadow: 0 0 8px #AAA;
-    opacity: 0.9;
+    opacity: 0.7;
 }
 
 #header h1 a {
@@ -136,20 +133,17 @@ h2 {
 
 #header #navigation {
     float: right;
-    font-size: 90%;
+    font-size: 80%;
     margin-top: -8px;
-    color: #CCC;
-    padding: 12px 16px 8px 16px;
-    background-color: #888;
+    color: #AAA;
+    padding: 14px 8px 10px 8px;
+    border: solid 3px #DDD;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
-    -webkit-box-shadow: 0 0 8px #AAA;
-    -moz-box-shadow: 0 0 8px #AAA;
     opacity: 0.9;
 }
 
 #header #navigation a {
-    color: white;
 }
 
 img.user-image {
@@ -157,7 +151,7 @@ img.user-image {
     margin: 0 2px;
     -webkit-box-shadow: 0px 1px 2px #333;
     -moz-box-shadow: 0px 1px 2px #333;
-    vertical-align: bottom;
+    vertical-align: middle;
 }
 
 #header #navigation img {
@@ -167,21 +161,20 @@ img.user-image {
 /* ---- #footer ----*/
 
 #footer {
-    width: 500px;
-    margin: 30px auto 20px auto;
-    padding: 8px 16px 8px 16px;
-    background-color: #FFF;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-box-shadow: 0 0 4px #AAA;
-    -moz-box-shadow: 0 0 4px #AAA;
-    opacity: 0.7;
+    margin: 30px 0 20px 0;
+    text-align: right;
 }
 
 #footer #navigation {
     font-size: 90%;
-    text-align: center;
+    display: inline-block;
     color: #666;
+    padding: 8px 16px 8px 16px;
+    background-color: #FFF;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border: solid 3px #DDD;
+    opacity: 0.9;
 }
 
 /* ---- .entry ----*/
@@ -281,7 +274,6 @@ img.user-image {
 ul#entries {
     margin: 40px 0 0 0;
     padding: 0;
-/*    background-color: white;*/
 }
 
 ul#entries h3 {
