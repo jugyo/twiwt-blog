@@ -84,6 +84,8 @@ twitter = oauth.remote_app('twitter',
 
 @app.before_request
 def before_request():
+    g.conf = conf
+
     g.user = None
     if 'remember_token' in session:
         user = User.find_by('remember_token =', session['remember_token'])

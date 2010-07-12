@@ -68,6 +68,8 @@
   </div>
 
 </div>
-
+{% if g.conf.google_analytics_tag %}
+  {{- g.conf.google_analytics_tag | safe -}}
+{% endif %}
 </body>
 </html>
