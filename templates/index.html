@@ -9,6 +9,6 @@
       {{ entry_list(entries, g.user) }}
     </div>
   {% else %}
-    <img src="{{ url_for('static', filename='usage.png') }}" style="margin-top: -30px"/>
+    <img src="{{ url_for('static', filename='usage.png') }}" style="margin-top: -30px" class="top" />
   {% endif %}
 {% endblock %}
