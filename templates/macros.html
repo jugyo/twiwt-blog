@@ -48,15 +48,17 @@
           {{ user_image_link(entry.user, 'm') }} {{ user_link(entry.user) }}
         </div>
       {% endif %}
-      <div class="entry-body">
-        {{ entry.formated_body() | safe}}
-      </div>
       <div class=info>
+        <a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.date }}</a>
         {% if user and user.key() == entry.user.key() %}
+        |
         <a href="{{ url_for('edit', hashcode=entry.hashcode) }}">Edit</a>
         |
         <a href="#" onclick="if (confirm('Are you sure?')) { $('#delete-entry-form-{{ entry.hashcode }}').submit(); }">Delete</a>
         {% endif %}
+      </div>
+      <div class="entry-body">
+        {{ entry.formated_body() | safe}}
       </div>
       {% if user and user.key() == entry.user.key() %}
         <form action="{{ url_for('entry', hashcode=entry.hashcode) }}"
