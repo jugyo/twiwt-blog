@@ -113,7 +113,6 @@ img.top:hover {
     background: #FFF url(content.png) top right no-repeat;
     -webkit-box-shadow: 0 0 16px #DDD;
     -moz-box-shadow: 0 0 16px #DDD;
-    text-shadow: 1px 1px 0px white;
 }
 
 /* ---- #header ----*/
@@ -248,6 +247,10 @@ img.user-image:hover {
 
 .submit-button {
     text-align: right;
+}
+
+a#show-help {
+  text-shadow: 1px 1px 0px white;
 }
 
 #form-help {
