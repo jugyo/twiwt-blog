@@ -6,7 +6,7 @@
       <h2 id=use-name>
         {{ user_image_link(user) }}
         {{ user_link(user) }}
-        <a href="http://twitter.com/{{ user.name }}" target="_blank" title="View {{ user.name }} on Twitter" class="twitter-link">
+        <a href="http://twitter.com/{{ user.name }}" target="_blank" title="View {{ user.name }} on Twitter" class="twitter-link tooltip">
           <img src="{{ url_for('static', filename='t_small-b.png') }}" />
         </a>
       </h2>
