@@ -15,3 +15,4 @@ google_analytics_tag = """<script type="text/javascript">
   })();
 
 </script>"""
+google_custom_search_code = 'XXXXXXXXXXXXXXXXXXXX:XXXXXXXXXXXXX'

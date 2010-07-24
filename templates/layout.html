@@ -32,6 +32,18 @@
 
   <div id=header>
     <div id=navigation>
+      <div id=search-box>
+        <form action="{{ url_for('search') }}" id="cse-search-box">
+          <div>
+            <input type="hidden" name="cx" value="{{ g.conf.google_custom_search_code }}" />
+            <input type="hidden" name="cof" value="FORID:11" />
+            <input type="hidden" name="ie" value="UTF-8" />
+            <input type="text" name="q" size="31" />
+          </div>
+        </form>
+        <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=ja"></script>
+      </div>
+      |
       {% if g.user %}
       {{ user_image_link(g.user, 'm') }}
       {{ user_link(g.user) }}

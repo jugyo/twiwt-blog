@@ -55,18 +55,18 @@ pre {
     overflow: auto;
 }
 
-input[type="text"], textarea {
+entry-form input[type="text"], entry-form textarea {
     margin: 4px 0;
     border: 1px solid #999;
     padding: 2px;
     font-size: 100%;
 }
 
-input[type="text"] {
+entry-form input[type="text"] {
     font-size: 110%;
 }
 
-input[type="submit"] {
+entry-form input[type="submit"] {
     margin: 0;
     font-size: 110%;
     background: #DDD;
@@ -79,7 +79,7 @@ input[type="submit"] {
     -moz-border-radius: 6px;
 }
 
-input[type="submit"]:hover {
+entry-form input[type="submit"]:hover {
     border: solid 1px #AAA;
 }
 
@@ -149,6 +149,7 @@ img.top:hover {
     font-size: 80%;
     margin-top: -8px;
     color: #AAA;
+    background-color: #FFF;
     padding: 14px 8px 10px 8px;
     border: solid 3px #DDD;
     -webkit-border-radius: 8px;
@@ -341,4 +342,28 @@ h2#use-name {
 h2#use-name a {
   color: #666;
   text-decoration: none;
+}
+
+#search-box {
+  display: inline-block;
+}
+
+#search-box:hover {
+  opacity: 1.0;
+}
+
+#search-box input[type=text] {
+  padding: 3px;
+  border: solid 1px #BBB;
+}
+
+#search-result {
+  margin: 10px 0;
+  padding: 32px;
+  border: solid 4px #DDD;
+  background-color: #FFF;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -webkit-box-shadow: 0 0 16px #DDD;
+  -moz-box-shadow: 0 0 16px #DDD;
 }

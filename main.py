@@ -248,6 +248,14 @@ def edit(hashcode):
         abort(404)
 
 
+# --------- search
+
+
+@app.route('/s')
+def search():
+    return render_template('search.html')
+
+
 # --------- user
 
 
