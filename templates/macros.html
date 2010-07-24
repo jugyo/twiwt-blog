@@ -35,13 +35,6 @@
     <div class=entry>
       <h2>
         <a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.title }}</a>
-        <a href="http://twitter.com/home/?status={{
-            '%s %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}"
-          title="Tweet this post"
-          target="_blank"
-          class="twitter-link">
-          <img src="{{ url_for('static', filename='t_small-b.png') }}" />
-        </a>
       </h2>
       {% if show_author %}
         <div class=info>
@@ -49,6 +42,14 @@
         </div>
       {% endif %}
       <div class=info>
+        <a href="http://twitter.com/home/?status={{
+            '%s %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}"
+          title="Tweet this post"
+          target="_blank"
+          class="twitter-link">
+          <img src="{{ url_for('static', filename='t_small-b.png') }}" />
+        </a>
+        |
         <a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.date }}</a>
         {% if user and user.key() == entry.user.key() %}
         |

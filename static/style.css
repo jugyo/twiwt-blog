@@ -22,6 +22,16 @@ a:hover {
   text-decoration: underline;
 }
 
+a.twitter-link img {
+  vertical-align: bottom;
+  opacity: 0.7;
+}
+
+a.twitter-link:hover img {
+  vertical-align: bottom;
+  opacity: 1.0;
+}
+
 blockquote {
   color: #666;
   margin: 20px;

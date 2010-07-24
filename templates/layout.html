@@ -14,15 +14,6 @@
 
       $('pre code').addClass("prettyprint");
       prettyPrint();
-
-      $('.twitter-link').hide();
-      $('.twitter-link').each(function() {
-        var that = $(this);
-        that.parent().hover(
-          function() { that.show() },
-          function() { that.hide() }
-        );
-      });
     });
   </script>
 </head>
