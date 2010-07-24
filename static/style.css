@@ -55,18 +55,18 @@ pre {
     overflow: auto;
 }
 
-entry-form input[type="text"], entry-form textarea {
+#entry-form input[type="text"], #entry-form textarea {
     margin: 4px 0;
     border: 1px solid #999;
     padding: 2px;
     font-size: 100%;
 }
 
-entry-form input[type="text"] {
+#entry-form input[type="text"] {
     font-size: 110%;
 }
 
-entry-form input[type="submit"] {
+#entry-form input[type="submit"] {
     margin: 0;
     font-size: 110%;
     background: #DDD;
@@ -79,7 +79,7 @@ entry-form input[type="submit"] {
     -moz-border-radius: 6px;
 }
 
-entry-form input[type="submit"]:hover {
+#entry-form input[type="submit"]:hover {
     border: solid 1px #AAA;
 }
 
