@@ -222,17 +222,14 @@ img.user-image:hover {
 
 .entry-body img {
   display: block;
-  margin: 0px auto;
+  margin: 20px auto;
   border: solid 1px #CCC;
   max-width: 600px;
-  -webkit-box-shadow: 2px 2px 12px #AAA;
-  -webkit-transition: all 0.2s ease-in-out;
-  -webkit-transform: scale(0.8);
 }
 
-.entry-body img:hover {
-  -webkit-transform-origin: 50% 50%;
-  -webkit-transform: scale(1.0);
+.entry-body object {
+  display: block;
+  margin: 20px auto;
 }
 
 /* ---- #entry-form ----*/
