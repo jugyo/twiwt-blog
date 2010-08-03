@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="google-site-verification" content="{{ g.conf.google_site_verification }}" />
   <title>Twiwt:Blog{% if entry is defined %} / {{ entry.user.name }} : {{ entry.title }}{% endif %}</title>
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='prettify.css') }}">
