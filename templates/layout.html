@@ -50,7 +50,7 @@
       |
       <a href="{{ url_for('logout') }}">Sign out</a>
       {% else %}
-      <a href="{{ url_for('login') }}">Sign in</a>
+      <a href="{{ url_for('login') }}" title="Sign in with Twitter" class="tooltip">Sign in</a>
       {% endif %}
     </div>
 
