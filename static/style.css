@@ -227,6 +227,15 @@ img.user-image:hover {
   clear: both;
 }
 
+.entry-body ul {
+  margin: 10px 0;
+}
+
+.entry-body ul li {
+  margin: 0;
+  list-style: square;
+}
+
 .entry-body p {
     margin: 10px 0;
 }
