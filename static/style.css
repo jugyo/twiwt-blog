@@ -103,7 +103,7 @@ img.top:hover {
 
 #content {
     margin: 10px 0;
-    padding: 16px;
+    padding: 12px 18px;
     border: solid 4px #DDD;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
@@ -168,7 +168,7 @@ img.user-image {
 }
 
 img.user-image:hover {
-    -webkit-transform: scale(1.4);
+    -webkit-transform: scale(1.2);
 }
 
 #header #navigation img {
@@ -201,19 +201,30 @@ img.user-image:hover {
     margin: 0;
 }
 
-.entry .info {
+.entry .tweet-button {
   margin: 4px 0;
-  font-size: 80%;
-  text-align: right;
+}
+
+.entry .info {
+    margin: 4px 0;
+    font-size: 80%;
 }
 
 .entry .info, .entry .info a {
     color: #AAA;
 }
 
+.entry h2 {
+}
+
 .entry h2 img {
-    vertical-align: bottom;
+    vertical-align: top;
     margin: 0 2px;
+}
+
+.entry-body {
+  padding: 8px 0;
+  clear: both;
 }
 
 .entry-body p {

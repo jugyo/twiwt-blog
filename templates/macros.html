@@ -33,34 +33,38 @@
 
 {% macro entry_detail(entry, user, show_author) %}
     <div class=entry>
+
+      <div style="float: left; margin-right: 4px;">
+        {% if show_author %}
+          {{ user_image_link(entry.user, 'n') }}
+        {% endif %}
+      </div>
       <h2>
         <a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.title }}</a>
       </h2>
-      {% if show_author %}
-        <div class=info>
-          {{ user_image_link(entry.user, 'm') }} {{ user_link(entry.user) }}
-        </div>
-      {% endif %}
-      <div class=info>
-        <a href="http://twitter.com/home/?status={{
-            '%s %s' % (entry.title, url_for('entry', hashcode=entry.hashcode, _external=True)) }}"
-          title="Tweet this post"
-          target="_blank"
-          class="twitter-link tooltip">
-          <img src="{{ url_for('static', filename='t_small-b.png') }}" />
-        </a>
-        |
-        <a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.date }}</a>
-        {% if user and user.key() == entry.user.key() %}
-        |
-        <a href="{{ url_for('edit', hashcode=entry.hashcode) }}">Edit</a>
-        |
-        <a href="#" onclick="if (confirm('Are you sure?')) { $('#delete-entry-form-{{ entry.hashcode }}').submit(); }">Delete</a>
-        {% endif %}
-      </div>
+      <div style="clear: both;"></div>
+
       <div class="entry-body">
         {{ entry.formated_body() | safe}}
       </div>
+
+      <div class="tweet-button">
+        <a href="http://twitter.com/share" class="twitter-share-button" data-url="{{ url_for('entry', hashcode=entry.hashcode) }}" data-count="horizontal">Tweet</a>
+        <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+      </div>
+
+      <div class=info>
+        <a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.date }}</a>
+      </div>
+
+      {% if user and user.key() == entry.user.key() %}
+        <div class=info style="text-align: right; margin-top: -1em">
+          <a href="{{ url_for('edit', hashcode=entry.hashcode) }}">Edit</a>
+          |
+          <a href="#" onclick="if (confirm('Are you sure?')) { $('#delete-entry-form-{{ entry.hashcode }}').submit(); }">Delete</a>
+        </div>
+      {% endif %}
+
       {% if user and user.key() == entry.user.key() %}
         <form action="{{ url_for('entry', hashcode=entry.hashcode) }}"
               method="post"
