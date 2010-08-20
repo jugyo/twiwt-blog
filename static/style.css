@@ -211,10 +211,15 @@ img.user-image:hover {
 }
 
 .entry .info, .entry .info a {
-    color: #AAA;
+    color: #888;
 }
 
-.entry h2 {
+.entry .actions a {
+  opacity: 0.5;
+}
+
+.entry .actions a:hover {
+  opacity: 1.0;
 }
 
 .entry h2 img {
@@ -381,3 +386,5 @@ h2#use-name a {
   -webkit-box-shadow: 0 0 16px #DDD;
   -moz-box-shadow: 0 0 16px #DDD;
 }
+
+/* ---- link icons ---- */

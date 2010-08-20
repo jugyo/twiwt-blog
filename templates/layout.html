@@ -31,6 +31,12 @@
       });
 
       $('textarea').autogrow();
+
+      $('.entry').hover(function() {
+        $('div.actions', this).css('visibility', 'visible');
+      }, function() {
+        $('div.actions', this).css('visibility', 'hidden');
+      });
     });
   </script>
 </head>

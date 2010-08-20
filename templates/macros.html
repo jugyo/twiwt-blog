@@ -58,10 +58,13 @@
       </div>
 
       {% if user and user.key() == entry.user.key() %}
-        <div class=info style="text-align: right; margin-top: -1em">
-          <a href="{{ url_for('edit', hashcode=entry.hashcode) }}">Edit</a>
-          |
-          <a href="#" onclick="if (confirm('Are you sure?')) { $('#delete-entry-form-{{ entry.hashcode }}').submit(); }">Delete</a>
+        <div class=actions style="text-align: right; margin-top: -1em; visibility: hidden">
+          <a href="{{ url_for('edit', hashcode=entry.hashcode) }}" title="Edit" class="tooltip">
+            <img src="{{ url_for('static', filename='edit.png')}}" />
+          </a>
+          <a href="#" class="delete tooltip" onclick="if (confirm('Are you sure?')) { $('#delete-entry-form-{{ entry.hashcode }}').submit(); }" title="Delete">
+            <img src="{{ url_for('static', filename='delete.png')}}" />
+          </a>
         </div>
       {% endif %}
 
