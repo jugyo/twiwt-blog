@@ -50,14 +50,18 @@ class User(Model):
 
 
 class Entry(Model):
-    hashcode = db.StringProperty()
-    title    = db.StringProperty()
-    body     = db.TextProperty()
-    user     = db.ReferenceProperty(User)
-    date     = db.DateTimeProperty()
+    hashcode                = db.StringProperty()
+    title                   = db.StringProperty()
+    body                    = db.TextProperty()
+    formated_body_cache     = db.TextProperty()
+    user                    = db.ReferenceProperty(User)
+    date                    = db.DateTimeProperty()
 
     def formated_body(self):
-        return markdown(self._striped_tags_body('script'))
+        if self.formated_body_cache is None:
+            self.formated_body_cache = markdown(self._striped_tags_body('script'))
+            self.save()
+        return self.formated_body_cache
 
     def _striped_tags_body(self, *tags):
         soup = BeautifulSoup(self.body)
@@ -236,6 +240,7 @@ def entry(hashcode):
                 else:
                     entry.title = request.form['title']
                     entry.body = request.form['body']
+                    entry.formated_body_cache = None
                     db.put(entry)
                     return redirect(url_for('entry', hashcode=entry.hashcode))
         else:
