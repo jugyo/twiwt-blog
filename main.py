@@ -2,6 +2,7 @@ from time import time
 import datetime
 from hashlib import sha1
 from markdown2 import markdown
+from BeautifulSoup import BeautifulSoup
 
 import conf
 
@@ -56,7 +57,15 @@ class Entry(Model):
     date     = db.DateTimeProperty()
 
     def formated_body(self):
-        return markdown(self.body)
+        return markdown(self._striped_tags_body('script'))
+
+    def _striped_tags_body(self, *tags):
+        soup = BeautifulSoup(self.body)
+        for tag in tags:
+            elems = soup.findAll(tag)
+            for elem in elems:
+                elem.extract()
+        return str(soup)
 
 # ---------------------------------------- auth
 
