@@ -59,17 +59,9 @@ class Entry(Model):
 
     def formated_body(self):
         if self.formated_body_cache is None:
-            self.formated_body_cache = markdown(self._striped_tags_body('script'))
+            self.formated_body_cache = markdown(self.body)
             self.save()
         return self.formated_body_cache
-
-    def _striped_tags_body(self, *tags):
-        soup = BeautifulSoup(self.body)
-        for tag in tags:
-            elems = soup.findAll(tag)
-            for elem in elems:
-                elem.extract()
-        return str(soup)
 
 # ---------------------------------------- auth
 
