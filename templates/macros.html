@@ -31,15 +31,13 @@
     </ul>
 {%- endmacro %}
 
-{% macro entry_detail(entry, user, show_author) %}
+{% macro entry_detail(entry, user) %}
     <div class=entry>
 
       <div style="float: left; margin-right: 4px;">
-        {% if show_author %}
-          {{ user_image_link(entry.user, 'n') }}
-        {% endif %}
+        {{ user_image_link(entry.user, 'n') }}
       </div>
-      <h2>
+      <h2 class=entry-title>
         <a href="{{ url_for('entry', hashcode=entry.hashcode) }}">{{ entry.title if entry.title != '' else entry.hashcode | d('') }}</a>
       </h2>
       <div style="clear: both;"></div>
