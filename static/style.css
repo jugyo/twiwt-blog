@@ -413,4 +413,11 @@ h2#use-name a {
   -moz-box-shadow: 0 0 16px #DDD;
 }
 
+/* ---- .whats ----*/
+
+h2.whats {
+  margin: 6px 0;
+  color: #CCC;
+}
+
 /* ---- link icons ---- */
