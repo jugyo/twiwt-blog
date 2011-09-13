@@ -269,7 +269,7 @@ h2.entry-title {
 }
 
 .entry-body h1 {
-  color: #831010;
+  color: #FF6969;
   margin-top: 40px;
   padding: 0;
   font-size: 180%;
@@ -283,10 +283,10 @@ h2.entry-title {
 }
 
 .entry-body h3 {
-  color: #FF6969;
+  color: #831010;
   margin-top: 32px;
   padding: 0;
-  font-size: 140%;
+  font-size: 130%;
 }
 
 /* ---- #entry-form ----*/
