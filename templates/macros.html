@@ -83,6 +83,6 @@
 
 {% macro user_image_link(user, size='n') -%}
     <a href="{{ url_for('user', username=user.name) }}">
-      <img src="http://img.tweetimag.es/i/{{ user.name }}_{{ size }}" alt="{{ user.screen_name }}" class="user-image" />
+      <img src="http://twitter.com/{{ user.name }}/profile_image?size=bigger" alt="{{ user.screen_name }}" class="user-image user-image-{{ size }}" />
     </a>
 {%- endmacro %}

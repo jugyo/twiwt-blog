@@ -176,6 +176,21 @@ img.user-image:hover {
     -webkit-transform: scale(1.2);
 }
 
+img.user-image-m {
+  width: 24px;
+  height: 24px;
+}
+
+img.user-image-n {
+  width: 36px;
+  height: 36px;
+}
+
+img.user-image-b {
+  width: 60px;
+  height: 60px;
+}
+
 #header #navigation img {
   margin-left: 4px;
 }
